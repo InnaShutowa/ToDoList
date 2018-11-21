@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+
+        </th>
+        <th>
             Заголовок
         </th>
         <th>
@@ -24,13 +27,16 @@
             Дата начала
         </th>
         <th>
-            Дта завершения
+            Дaта завершения
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.ActionLink("Изменить статус задачи", "ChangeStyle", new { id = item.Id })
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -40,6 +46,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.DateCreate)
         </td>

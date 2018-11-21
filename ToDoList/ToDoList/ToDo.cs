@@ -18,7 +18,7 @@ namespace ToDoList
         public string Title { get; set; }
         public string Text { get; set; }
         public bool Status { get; set; }
-        public System.DateTime DateCreate { get; set; }
-        public System.DateTime DateDeadline { get; set; }
+        public Nullable<System.DateTime> DateCreate { get; set; }
+        public Nullable<System.DateTime> DateDeadline { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace ToDoList.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        [HttpGet]
         public ActionResult Index()
         {
             using (var db = new ListEntities()) {
@@ -17,10 +18,24 @@ namespace ToDoList.Controllers
             }
         }
 
+        public ActionResult ChangeStyle(int id) {
+            try {
+                using (var db = new ListEntities()) {
+                    var element = db.ToDo.ToList();
+                    element.FirstOrDefault(a => a.Id == id).Status = !element.FirstOrDefault(a => a.Id == id).Status;
+                    db.SaveChanges();
+                    return View("Index", element);
+                }
+            } catch (Exception) {
+                return Redirect("/Error/UnknownError");
+            }
+        }
+
         public ActionResult Delete(int id) {
             using (var db = new ListEntities()) {
                 var element = db.ToDo.FirstOrDefault(a => a.Id == id);
-                if (element != null) db.ToDo.Remove(element);
+                if (element==null) return Redirect("/Error/NotFound");
+                db.ToDo.Remove(element);
                 db.SaveChanges();
                 return View("Index", db.ToDo.ToList());
             }
@@ -32,23 +47,28 @@ namespace ToDoList.Controllers
         [HttpPost]
         public ActionResult Create(ToDo element) {
             using (var db = new ListEntities()) {
+                if (element.DateCreate > element.DateDeadline ||
+                   String.IsNullOrEmpty(element.Text) || String.IsNullOrEmpty(element.Title))
+                    return Redirect("/Error/SomethingWrong");
                 db.ToDo.Add(element);
                 db.SaveChanges();
                 return View("Index", db.ToDo.ToList());
             }
         }
-        [HttpGet]
+        [HttpGet] 
         public ActionResult Edit(int id) {
             using (var db = new ListEntities()) {
-                if (!db.ToDo.Any(a => a.Id == id)) return null;
+                if (!db.ToDo.Any(a => a.Id == id)) return Redirect("/Error/NotFound");
                 return View(db.ToDo.FirstOrDefault(a => a.Id == id));
             }
         }
         [HttpPost]
         public ActionResult Edit(ToDo element) {
             using (var db = new ListEntities()) {
-                if (!db.ToDo.Any(a => a.Id == element.Id)) return null;
-                if (element.DateCreate < element.DateDeadline) return null;
+                if (!db.ToDo.Any(a => a.Id == element.Id)) return Redirect("/Error/NotFound");
+                if (//element.DateCreate > element.DateDeadline || 
+                    String.IsNullOrEmpty(element.Text) || String.IsNullOrEmpty(element.Title))
+                    return Redirect("/Error/SomethingWrong");
                 var oldElement = db.ToDo.FirstOrDefault(a => a.Id == element.Id);
                 oldElement.Title = element.Title;
                 oldElement.Text = element.Text;

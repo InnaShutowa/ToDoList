@@ -9,8 +9,14 @@ namespace ToDoList.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Index()
+        public ActionResult NotFound()
         {
+            return View();
+        }
+        public ActionResult SomethingWrong() {
+            return View();
+        }
+        public ActionResult UnknownError() {
             return View();
         }
     }
