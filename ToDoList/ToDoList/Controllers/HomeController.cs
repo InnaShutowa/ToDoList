@@ -37,5 +37,27 @@ namespace ToDoList.Controllers
                 return View("Index", db.ToDo.ToList());
             }
         }
+        [HttpGet]
+        public ActionResult Edit(int id) {
+            using (var db = new ListEntities()) {
+                if (!db.ToDo.Any(a => a.Id == id)) return null;
+                return View(db.ToDo.FirstOrDefault(a => a.Id == id));
+            }
+        }
+        [HttpPost]
+        public ActionResult Edit(ToDo element) {
+            using (var db = new ListEntities()) {
+                if (!db.ToDo.Any(a => a.Id == element.Id)) return null;
+                if (element.DateCreate < element.DateDeadline) return null;
+                var oldElement = db.ToDo.FirstOrDefault(a => a.Id == element.Id);
+                oldElement.Title = element.Title;
+                oldElement.Text = element.Text;
+                oldElement.Status = element.Status;
+                oldElement.DateDeadline = element.DateDeadline;
+                oldElement.DateCreate = element.DateCreate;
+                db.SaveChanges();
+                return View("Index", db.ToDo.ToList());
+            }
+        }
     }
 }
