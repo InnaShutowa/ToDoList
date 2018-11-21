@@ -8,8 +8,8 @@
     <Property Name="Title" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="Text" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="Status" Type="bit" Nullable="false" />
-    <Property Name="DateCreate" Type="date" />
-    <Property Name="DateDeadline" Type="date" />
+    <Property Name="DateCreate" Type="datetime" Nullable="false" />
+    <Property Name="DateDeadline" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Хранилище ListModelContainer">
     <EntitySet Name="ToDo" EntityType="Self.ToDo" Schema="dbo" store:Type="Tables" />

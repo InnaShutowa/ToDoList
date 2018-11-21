@@ -11,14 +11,22 @@ namespace ToDoList
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ToDo
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
         public bool Status { get; set; }
-        public Nullable<System.DateTime> DateCreate { get; set; }
-        public Nullable<System.DateTime> DateDeadline { get; set; }
+
+        [Display(Name = "Departure Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public System.DateTime DateCreate { get; set; }
+        [Display(Name = "Departure Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public System.DateTime DateDeadline { get; set; }
     }
 }

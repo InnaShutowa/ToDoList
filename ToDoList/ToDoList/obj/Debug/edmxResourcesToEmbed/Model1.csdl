@@ -11,7 +11,7 @@
     <Property Name="Title" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="Text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Boolean" Nullable="false" />
-    <Property Name="DateCreate" Type="DateTime" Precision="0" />
-    <Property Name="DateDeadline" Type="DateTime" Precision="0" />
+    <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDeadline" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
 </Schema>
