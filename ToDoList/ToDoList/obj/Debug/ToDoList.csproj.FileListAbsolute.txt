@@ -78,3 +78,4 @@ C:\Users\Инна\Documents\GitHub\ToDoList\ToDoList\ToDoList\obj\Debug\ToDoList
 C:\Users\Инна\Documents\GitHub\ToDoList\ToDoList\ToDoList\obj\Debug\ToDoList.csproj.CopyComplete
 C:\Users\Инна\Documents\GitHub\ToDoList\ToDoList\ToDoList\obj\Debug\ToDoList.dll
 C:\Users\Инна\Documents\GitHub\ToDoList\ToDoList\ToDoList\obj\Debug\ToDoList.pdb
+C:\Users\Инна\Documents\GitHub\ToDoList\ToDoList\ToDoList\bin\ru\EntityFramework.SqlServer.resources.dll
